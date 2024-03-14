@@ -1,0 +1,14 @@
+GET http://localhost:3000/
+###
+POST http://localhost:3000/favourites/add/
+Content-Type: application/json
+
+{
+    "id": "trini",
+    "favourite": {
+        "url": "www.discord.com"
+    }
+
+}
+###
+GET http://localhost:3000/favourites/auth0|65e6e4e3860efacb5e6466f4/

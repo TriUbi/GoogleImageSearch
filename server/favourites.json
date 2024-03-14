@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "trini",
+    "favourite": {
+      "url": "www.discord.com"
+    }
+  },
+  {
+    "id": "auth0|65e6e4e3860efacb5e6466f4",
+    "favourite": {
+      "url": "www.discord.com"
+    }
+  },
+  {
+    "id": "auth0|65e6e4e3860efacb5e6466f4",
+    "favourite": {
+      "url": "www.discord.com"
+    }
+  },
+  {
+    "id": "auth0|65e6e4e3860efacb5e6466f4",
+    "favourite": {
+      "url": "https://cdn.shopify.com/s/files/1/0507/3754/5401/files/R5549D_LOL_preset_proflowers-mx-tile-wide-lv-new.jpg?v=1703830370&width=1920"
+    }
+  }
+]

@@ -1,9 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./components/LoginButton"
 import LogoutButton from "./components/LogoutButton";
-import {ChangeEvent, FormEvent, useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
 import axios from "axios";
 import { IImageSearchData } from "./models/IImageSearchData";
+import './App.css'; 
+import { Link } from "react-router-dom";
+import { Favourites } from "./components/Favourites";
 
 
 
@@ -15,7 +18,7 @@ const App = () => {
       searchTime: 0
     }
 });
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   console.log(isAuthenticated)
 
@@ -43,36 +46,59 @@ setSearchResults({
 
 
   return (
+    
     <>
-    {isAuthenticated ?  <LogoutButton/> 
-     : <LoginButton/>}
+    {isAuthenticated ? (
+    <>
+      <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        <input value={userSearchText} onChange={handleChange} />
+        <button type="submit">Search</button>
+      </form>
+      </div>
 
-
-        <form onSubmit={handleSubmit}>
-          <input value={userSearchText} onChange={handleChange} />
-          <button type="submit">Search</button>
-        </form>
-     
-
-
-<h3>Search Results:</h3>
-
-{searchResults.searchInformation.searchTime && <p>{searchResults.searchInformation.searchTime}</p>}
-
+<div className="search-results">
+      <h3>Search Results:</h3>
+      {searchResults.searchInformation.searchTime && <p>{searchResults.searchInformation.searchTime}</p>}
+</div>
 {
   searchResults.spelling && <p
   onClick={(e) =>
     handleSubmit(e, searchResults.spelling?.correctedQuery)
     }>Did u mean: {searchResults.spelling.correctedQuery}?</p>
 }
-
+<div className="list-container">
       <ul>
         {searchResults.items.map((item, index) => (
           <li key={index}>
           <img src={item.link} alt="vackra blommor"/>
+           <span onClick={async ()=> {
+            let favourite = { 
+              id: user?.sub,
+            favourite: {
+                url: item.link
+            }}
+          let response = await axios.post("http://localhost:3000/favourites/add/", favourite);
+
+          console.log(response);
+          
+
+           }}>favo</span>
           </li>
+         
         ))}
       </ul>
+      </div>
+      <div>
+        <Favourites/>
+      </div>
+       <div>
+      <LogoutButton />
+      </div>
+    </>
+  ) : (
+    <LoginButton />
+  )}
       </>
   )}
 
