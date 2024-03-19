@@ -3,7 +3,10 @@ const express = require("express");
 const fs = require("fs").promises
 
 const cors = require("cors"); 
-const { array } = require("joi");
+
+const { validateData } = require("./validateData");
+
+const {savedImg} = require("./favouriteSchema");
 
 const app = express();
 
@@ -18,27 +21,44 @@ app.get("/", (req, res) => {
 
 app.get("/favourites/:id", async (req, res) => {
 
-   let favourites = await fs.readFile("./favourites.json");
-   favourites = JSON.parse(favourites);
-   
-   let userFavourites = []
-    favourites.map(favouriteimg => {
-   if (favouriteimg.id === req.params.id) {
-    userFavourites.push(favouriteimg.favourite)
-   } 
+   let users = await fs.readFile("./favourites.json");
+   users = JSON.parse(users);
+   let favourites = []
+   let user = users.find(user => (user.id === req.params.id))
+   if (user) {
+    favourites = user.favourites; 
    }
-)
-res.status(200).json(userFavourites); 
+   res.status(200).json(favourites); 
 })
 
-app.post("/favourites/add", async (req, res) => {
+app.post("/favourites/add", validateData(savedImg), async (req, res) => {
 
-console.log("HELLO");
-    let favourites = await fs.readFile("./favourites.json");
-    favourites = JSON.parse(favourites);
-    favourites = [...favourites, req.body]
+    let users = await fs.readFile("./favourites.json");
 
-    await fs.writeFile("./favourites.json", JSON.stringify(favourites, null, 2))
+    users = JSON.parse(users);
+
+    let userIsFound = false;
+
+
+    users = users.map((user)=> {
+        if (user.id === req.body.id) {
+            user.favourites.push(req.body.favourite)
+            userIsFound = true;
+        } 
+        return user
+    })
+    if (userIsFound === false) {
+        let user =  {
+        id: req.body.id,
+        favourites: [req.body.favourite]
+    }
+   users.push(
+    user 
+   )}
+    
+    
+
+    await fs.writeFile("./favourites.json", JSON.stringify(users, null, 2))
 
     res.status(200).json("added successfully");  
 

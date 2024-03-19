@@ -5,7 +5,6 @@ import {ChangeEvent, FormEvent, useState} from "react";
 import axios from "axios";
 import { IImageSearchData } from "./models/IImageSearchData";
 import './App.css'; 
-import { Link } from "react-router-dom";
 import { Favourites } from "./components/Favourites";
 
 
@@ -20,8 +19,6 @@ const App = () => {
 });
   const { isAuthenticated, user } = useAuth0();
 
-  console.log(isAuthenticated)
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>)=> {
     setUserSearchText(e.target.value); 
   }
@@ -32,6 +29,7 @@ const App = () => {
     let response = await axios.get<IImageSearchData>(
       `https://www.googleapis.com/customsearch/v1?key=${import.meta.env.VITE_GOOGLE_API_KEY}&cx=751d085b7b4f64115&num=10&searchType=image&q=${searchText}`
      );
+     
 
 setSearchResults({
       items: response.data.items.map((item) => ({
@@ -71,13 +69,17 @@ setSearchResults({
       <ul>
         {searchResults.items.map((item, index) => (
           <li key={index}>
-          <img src={item.link} alt="vackra blommor"/>
+          <img src={item.link} alt=""/>
            <span onClick={async ()=> {
+
             let favourite = { 
               id: user?.sub,
             favourite: {
-                url: item.link
+                url: item.link,
+                titel: item.searchTerm,
+                byteSize: item.image.byteSize
             }}
+
           let response = await axios.post("http://localhost:3000/favourites/add/", favourite);
 
           console.log(response);

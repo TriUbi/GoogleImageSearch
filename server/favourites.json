@@ -1,26 +1,37 @@
 [
   {
-    "id": "trini",
-    "favourite": {
-      "url": "www.discord.com"
-    }
+    "id": "trini2",
+    "favourites": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0507/3754/5401/files/R5549D_LOL_preset_proflowers-mx-tile-wide-lv-new.jpg?v=1703830370&width=1920",
+        "byteSize": 50000,
+        "titel": "flowers"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0507/3754/5401/files/R5549D_LOL_preset_proflowers-mx-tile-wide-lv-new.jpg?v=1703830370&width=1920",
+        "byteSize": 50000,
+        "titel": "flowers"
+      }
+    ]
   },
   {
     "id": "auth0|65e6e4e3860efacb5e6466f4",
-    "favourite": {
-      "url": "www.discord.com"
-    }
-  },
-  {
-    "id": "auth0|65e6e4e3860efacb5e6466f4",
-    "favourite": {
-      "url": "www.discord.com"
-    }
-  },
-  {
-    "id": "auth0|65e6e4e3860efacb5e6466f4",
-    "favourite": {
-      "url": "https://cdn.shopify.com/s/files/1/0507/3754/5401/files/R5549D_LOL_preset_proflowers-mx-tile-wide-lv-new.jpg?v=1703830370&width=1920"
-    }
+    "favourites": [
+      {
+        "url": "https://www.mccormick.northwestern.edu/images/news/2023/07/what-does-a-twinkling-star-sound-like-take-a-listen-social.jpg",
+        "titel": "stars",
+        "byteSize": 509818
+      },
+      {
+        "url": "https://hips.hearstapps.com/hmg-prod/images/editorial-package-thepowerofnature-flowers-061923-longform-2500x1406-mb-648218df07e18.jpg?crop=0.566xw:1.00xh;0.412xw,0&resize=1200:*",
+        "titel": "flowers",
+        "byteSize": 265224
+      },
+      {
+        "url": "https://www.1800flowers.com/blog/wp-content/uploads/2021/05/Birthday-Flowers-Colors.jpg",
+        "titel": "flowers",
+        "byteSize": 1101737
+      }
+    ]
   }
 ]
