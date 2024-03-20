@@ -30,8 +30,6 @@ export const Favourites = () => {
         See my favourites
       </button>
 
-      {/* Map för att gå igenom alla favoriter och visa i ett img element.
-          Visas bara om showFavourites är true */}
       {showFavourites && favourites.map((fav, i) => 
       <div key={i}>
       <p>{fav.titel}</p>

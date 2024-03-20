@@ -89,7 +89,6 @@ setSearchResults({
           let response = await axios.post("http://localhost:3000/favourites/add/", favourite);
 
           console.log(response);
-          
 
            }}>
            <FaHeart />

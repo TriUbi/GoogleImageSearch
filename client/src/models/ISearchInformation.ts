@@ -1,5 +1,3 @@
-export interface ISearchInformation {
-   
+export interface ISearchInformation { 
     searchTime: number;
-    
   }
