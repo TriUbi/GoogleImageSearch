@@ -16,7 +16,7 @@ export const Favourites = () => {
 
   return (
     <>
-      <button
+      <button className="favourites-button"
         onClick={async () => {
           setshowFavourites(true);
 

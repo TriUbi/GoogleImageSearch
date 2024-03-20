@@ -7,6 +7,9 @@ import { IImageSearchData } from "./models/IImageSearchData";
 import './App.css'; 
 import { Favourites } from "./components/Favourites";
 
+/*ICONS*/
+import { FaHeart } from "react-icons/fa";
+
 
 
 
@@ -56,21 +59,24 @@ setSearchResults({
       </div>
 
 <div className="search-results">
+      {searchResults.searchInformation.searchTime && <p className="time"> search time: {searchResults.searchInformation.searchTime}</p>}
       <h3>Search Results:</h3>
-      {searchResults.searchInformation.searchTime && <p>{searchResults.searchInformation.searchTime}</p>}
-</div>
+  </div>
+<div className="correctedQuery-div">
 {
-  searchResults.spelling && <p
+  searchResults.spelling && <p className="didyoumean"
   onClick={(e) =>
     handleSubmit(e, searchResults.spelling?.correctedQuery)
-    }>Did u mean: {searchResults.spelling.correctedQuery}?</p>
+    }>Did you mean: {searchResults.spelling.correctedQuery}</p>
 }
+</div>
 <div className="list-container">
       <ul>
         {searchResults.items.map((item, index) => (
+          
           <li key={index}>
           <img src={item.link} alt=""/>
-           <span onClick={async ()=> {
+           <button className="favo-button" onClick={async ()=> {
 
             let favourite = { 
               id: user?.sub,
@@ -85,11 +91,14 @@ setSearchResults({
           console.log(response);
           
 
-           }}>favo</span>
+           }}>
+           <FaHeart />
+           </button>
           </li>
          
         ))}
       </ul>
+      
       </div>
       <div>
         <Favourites/>
@@ -99,7 +108,13 @@ setSearchResults({
       </div>
     </>
   ) : (
-    <LoginButton />
+    <>
+    
+    <div className="welcome-banner">
+      <h1>Welcome to your private gallery</h1>
+      <p>Please log in to continue...</p>
+    </div>
+    <LoginButton /> </>
   )}
       </>
   )}
