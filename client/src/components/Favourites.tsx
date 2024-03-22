@@ -32,7 +32,6 @@ export const Favourites = () => {
 
       {showFavourites && favourites.map((fav, i) => 
       <div key={i}>
-      <p>{fav.titel}</p>
       <img src={fav.url} />
       </div>
       )}
