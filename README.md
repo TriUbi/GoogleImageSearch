@@ -1,6 +1,5 @@
 # GoogleImageSearch
-
-STEP 1. Clone repository
+STEP 1: Clone repository
 
 THEN...
 
